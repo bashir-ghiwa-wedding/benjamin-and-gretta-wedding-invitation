@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjamin & Gretta Wedding Invitation</title>
+    <!-- Font Loaders -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BACKGROUND MUSIC ENGINE -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="our-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- SMARTPHONE FRAME WORKSPACE -->
+    <div class="phone-container">
+        
+        <!-- FLOATING LANGUAGE TOGGLE OVERLAY -->
+        <div class="lang-switcher">
+            <span id="lang-btn-en" class="lang-opt active" onclick="switchLanguage('en')">EN</span>
+            <span class="lang-divider">|</span>
+            <span id="lang-btn-ar" class="lang-opt" onclick="switchLanguage('ar')">AR</span>
+        </div>
+
+        <!-- SECTION 1: HERO & COUNTDOWN -->
+        <section id="hero-slide" class="slide hero-slide">
+            <div class="overlay"></div>
+            <div class="content">
+                <img src="wedding-logo.png" class="monogram-logo" alt="Benjamin and Gretta Logo">
+                <div id="countdown" class="video-countdown">
+                    <!-- Loaded dynamically via JS -->
+                </div>
+                <button class="start-btn" onclick="scrollToSection('text-slide')" data-en="START" data-ar="ابدأ">START</button>
+            </div>
+        </section>
+
+        <!-- SECTION 2: FORMAL INVITATION CARD -->
+        <section id="text-slide" class="slide story-content-slide">
+            <div class="content">
+                <p class="host-text" data-en="The Families of" data-ar="عائلتا">The Families of</p>
+                <h3 class="parents-names" data-en="Benjamin & Gretta" data-ar="بنيامين و غريتا">Benjamin & Gretta</h3>
+                
+                <p class="joyfully-invite" data-en="Joyfully invite you to celebrate their wedding" data-ar="يتشرفون بدعوتكم لحضور حفل زفافهم">Joyfully invite you to celebrate their wedding</p>
+                
+                <p class="script-quote" data-en="“Therefore what God has joined together, let no one separate.”" data-ar="«فَالَّذِي جَمَعَهُ اللهُ لاَ يُفَرِّقْهُ إِنْسَانٌ»">“Therefore what God has joined together, let no one separate.”</p>
+                
+                <p class="main-date" data-en="Saturday, August 8, 2026" data-ar="السبت، ٨ آب ٢٠٢٦">Saturday, August 8, 2026</p>
+            </div>
+            <div class="swipe-indicator" onclick="scrollToSection('details-slide')">
+                <span data-en="Swipe Left" data-ar="اسحب لليسار">Swipe Left</span> <span class="arrow-icon">➔</span>
+            </div>
+        </section>
+
+        <!-- SECTION 3: CEREMONY DETAILS & MAP -->
+        <section id="details-slide" class="slide story-content-slide">
+            <div class="content">
+                <span class="icon-church">👑</span>
+                <h2 class="section-title" data-en="Wedding Ceremony" data-ar="الإكليل المقدس">Wedding Ceremony</h2>
+                <p class="time-stamp" data-en="Saturday, August 8, 2026<br>5:00 PM" data-ar="السبت، ٨ آب ٢٠٢٦<br>الساعة ٥:٠٠ مساءً">Saturday, August 8, 2026<br>5:00 PM</p>
+                
+                <h3 class="venue-name" data-en="Our Lady of Lebanon Basilica" data-ar="بازيليك سيدة لبنان">Our Lady of Lebanon Basilica</h3>
+                <p class="venue-loc" data-en="Harissa-Jounieh, Lebanon" data-ar="حريصا - جونيه، لبنان">Harissa-Jounieh, Lebanon</p>
+
+                <div class="map-box" onclick="openMap()">
+                    <div class="map-pointer">📍</div>
+                    <span class="map-tag" data-en="Basilica Our Lady of Lebanon — Harissa" data-ar="بازيليك سيدة لبنان — حريصا">Basilica Our Lady of Lebanon — Harissa</span>
+                    <p class="map-hint" data-en="(Tap to open in Maps)" data-ar="(اضغط لفتح الخريطة)">(Tap to open in Maps)</p>
+                </div>
+            </div>
+            <div class="swipe-indicator" onclick="scrollToSection('reception-slide')">
+                <span data-en="Swipe Left" data-ar="اسحب لليسار">Swipe Left</span> <span class="arrow-icon">➔</span>
+            </div>
+        </section>
+
+        <!-- SECTION 4: RECEPTION CELEBRATION -->
+        <section id="reception-slide" class="slide story-content-slide">
+            <div class="content">
+                <span class="icon-reception">🥂</span>
+                <h2 class="section-title" data-en="Wedding Celebration" data-ar="سهرة الزفاف">Wedding Celebration</h2>
+                <p class="time-stamp" data-en="Saturday, August 8, 2026<br>7:30 PM" data-ar="السبت، ٨ آب ٢٠٢٦<br>الساعة ٧:٣٠ مساءً">Saturday, August 8, 2026<br>7:30 PM</p>
+                
+                <h3 class="venue-name" data-en="Gefinor Rotana" data-ar="جيفينور روتانا">Gefinor Rotana</h3>
+                <p class="venue-loc" data-en="Beirut, Lebanon" data-ar="بيروت، لبنان">Beirut, Lebanon</p>
+
+                <div class="map-box celebration-map" onclick="openReceptionMap()">
+                    <div class="map-pointer dynamic-pointer">🎉</div>
+                    <span class="map-tag" data-en="Gefinor Rotana Hotel — Beirut" data-ar="فندق جيفينور روتانا — بيروت">Gefinor Rotana Hotel — Beirut</span>
+                    <p class="map-hint" data-en="(Tap to open in Maps)" data-ar="(اضغط لفتح الخريطة)">(Tap to open in Maps)</p>
+                </div>
+            </div>
+            <div class="swipe-indicator" onclick="scrollToSection('registry-slide')">
+                <span data-en="Swipe Left" data-ar="اسحب لليسار">Swipe Left</span> <span class="arrow-icon">➔</span>
+            </div>
+        </section>
+
+        <!-- SECTION 5: GIFT REGISTRY SLIDE -->
+        <section id="registry-slide" class="slide story-content-slide">
+            <div class="content">
+                <span class="icon-reception">🎁</span>
+                <h2 class="section-title" data-en="Gift Registry" data-ar="قائمة الهدايا">Gift Registry</h2>
+                
+                <p class="joyfully-invite" style="margin-bottom: 25px;" 
+                   data-en="We're so excited to celebrate this special day with you. For those who wish, a wedding registry is available:" 
+                   data-ar="نحن متحمسون جداً للاحتفال بهذا اليوم المميز معكم. لمن يرغب، تتوفر تفاصيل الحساب أدناه:">
+                   We're so excited to celebrate this special day with you. For those who wish, a wedding registry is available:
+                </p>
+                
+                <div class="map-box" style="cursor: pointer; background: #f8f9fa !important;" onclick="copyAccountNumber()">
+                    <span class="venue-name" style="color: #2d3436 !important; font-size: 0.8rem; letter-spacing: 1.5px; display: block; margin-bottom: 5px; text-transform: uppercase;" data-en="Whish Money Account" data-ar="حساب ويش ماني">Whish Money Account</span>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin: 5px 0;">
+                        <span id="account-num" style="font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 600; color: #2d3436; letter-spacing: 0.5px;">123141234-01</span>
+                        <span id="copy-icon" style="font-size: 1.1rem;">📋</span>
+                    </div>
+                    <p id="copy-toast" class="map-hint" style="color: #6c5ce7; font-weight: 600; margin: 0; opacity: 0; transition: opacity 0.3s ease;" data-en="Click to copy account code" data-ar="اضغط لنسخ رقم الحساب">Click to copy account code</p>
+                </div>
+            </div>
+            <div class="swipe-indicator" onclick="scrollToSection('rsvp-slide')">
+                <span data-en="Swipe Left" data-ar="اسحب لليسار">Swipe Left</span> <span class="arrow-icon">➔</span>
+            </div>
+        </section>
+
+        <!-- SECTION 6: RSVP FORM PANEL -->
+        <section id="rsvp-slide" class="slide story-content-slide">
+            <div class="content">
+                <div class="monogram-small">B & G</div>
+                <h2 class="rsvp-header" data-en="RSVP" data-ar="تأكيد الحضور">RSVP</h2>
+                <p class="rsvp-deadline" data-en="Please respond by July 8, 2026" data-ar="الرجاء تأكيد الحضور قبل ٨ تموز ٢٠٢٦">Please respond by July 8, 2026</p>
+                
+                <form class="rsvp-form" onsubmit="submitRSVP(event)">
+                    <label data-en="Full Name" data-ar="الاسم الكامل">Full Name</label>
+                    <input type="text" id="guest-name" required placeholder="Name">
+                    
+                    <label data-en="Will you attend?" data-ar="هل ستشرفنا بحضورك؟">Will you attend?</label>
+                    <select id="attendance" onchange="toggleGuestCount()">
+                        <option value="yes" data-en="Joyfully Accept" data-ar="أتشرف بالحضور">Joyfully Accept</option>
+                        <option value="no" data-en="Regretfully Decline" data-ar="أعتذر عن الحضور">Regretfully Decline</option>
+                    </select>
+
+                    <div id="guest-count-wrapper">
+                        <label data-en="Number of Guests" data-ar="عدد الحضور">Number of Guests</label>
+                        <select id="guest-count">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+
+                    <label data-en="Leave a Comment (Optional)" data-ar="ترك تعليق (اختياري)">Leave a Comment (Optional)</label>
+                    <textarea id="guest-comment" rows="2" placeholder="..."></textarea>
+                    
+                    <button type="submit" class="submit-btn" data-en="Submit via WhatsApp" data-ar="إرسال عبر الواتساب">Submit via WhatsApp</button>
+                </form>
+
+                <div class="last-slide-navigation">
+                    <button class="nav-alt-btn back-start-btn" onclick="scrollToSection('hero-slide')" data-en="↺ Back to Start" data-ar="↺ العودة للبداية">↺ Back to Start</button>
+                    <button class="nav-alt-btn exit-btn" onclick="exitInvitation()" data-en="✕ Exit" data-ar="✕ خروج">✕ Exit</button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Background Viewport Layer for Proposal Cross-fades -->
+    <div class="global-slideshow-viewport">
+        <div class="story-bg img-1"></div>
+        <div class="story-bg img-2"></div>
+        <div class="story-bg img-3"></div>
+        <div class="story-bg img-4"></div>
+        <div class="story-bg img-6"></div>
+        <div class="story-bg img-7"></div>
+        <div class="story-bg img-8"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

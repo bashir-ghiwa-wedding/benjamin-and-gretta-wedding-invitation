@@ -1,0 +1,542 @@
+/* ==========================================
+   RESET & BASE SYSTEM
+   ========================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1a1a1a;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* SMARTPHONE FRAME CONTAINER */
+.phone-container {
+    width: 100%;
+    max-width: 412px;
+    height: 92vh;
+    max-height: 850px;
+    background-color: #111;
+    border-radius: 36px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    
+    /* HORIZONTAL WORKSPACE CONFIGURATION */
+    display: flex;
+    flex-direction: row; 
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    
+    position: relative;
+    border: 8px solid #2d2d2d;
+}
+
+/* Hide standard scrollbars */
+.phone-container::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+}
+
+/* APP SLIDES SYSTEM BASE */
+.slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 25px;
+    text-align: center;
+    scroll-snap-align: start;
+}
+
+.content {
+    z-index: 10;
+    width: 100%;
+}
+
+/* ==========================================
+   SLIDE 1: HERO CONTAINER (SOLID OPAQUE TOP LAYER)
+   ========================================== */
+.hero-slide {
+    background: url('us-bg.jpeg') center/cover no-repeat;
+    background-color: #8c765c;
+    z-index: 20;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.65));
+    z-index: 2;
+}
+
+/* ==========================================
+   GLOBAL BACKGROUND SLIDESHOW ENGINE (PAGES 2 TO END)
+   ========================================== */
+.global-slideshow-viewport {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.story-bg {
+    position: fixed; 
+    top: 0px;
+    left: calc(50% - 198px); 
+    width: 100%;
+    max-width: 396px; 
+    height: 100%;
+    background-size: cover;
+    background-position: center 60%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 1;
+    border-radius: 28px;
+    animation: masterProposalLoop 40s infinite ease-in-out;
+}
+
+/* LINKING YOUR PROPOSAL IMAGES PATHS */
+.img-1 { background-image: url('proposal1.jpeg'); }
+.img-2 { background-image: url('proposal2.jpeg'); }
+.img-3 { background-image: url('proposal3.jpeg'); }
+.img-4 { background-image: url('proposal4.jpeg'); }
+.img-6 { background-image: url('proposal6.jpeg'); }
+.img-7 { 
+    background-image: url('proposal7.jpeg'); 
+    background-position: 70% 75% !important; 
+}
+.img-8 { background-image: url('proposal8.jpeg'); }
+
+.img-1 { animation-delay: 0s; }
+.img-2 { animation-delay: 5s; }
+.img-3 { animation-delay: 10s; }
+.img-4 { animation-delay: 15s; }
+.img-6 { animation-delay: 20s; }
+.img-7 { animation-delay: 25s; }
+.img-8 { animation-delay: 30s; }
+
+@keyframes masterProposalLoop {
+    0% { opacity: 0; }
+    3.75% { opacity: 1; }
+    12.5% { opacity: 1; }
+    16.25% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+.story-content-slide {
+    color: #ffffff;
+    z-index: 5;
+    background-color: transparent;
+}
+
+.story-content-slide::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.58), rgba(0,0,0,0.74));
+    z-index: 2; 
+}
+
+/* ==========================================
+   PERSISTENT FLOATING SWIPE LEFT CORNER BUTTONS
+   ========================================== */
+.swipe-indicator {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    z-index: 30;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.04); opacity: 1; box-shadow: 0 4px 15px rgba(255, 255, 255, 0.25); }
+}
+
+/* ==========================================
+   TYPOGRAPHY & CONTENT BLOCK ELEMENTS
+   ========================================== */
+.monogram-logo {
+    width: 280px;
+    height: auto;           
+    display: block;         
+    margin: 40px auto 15px auto; 
+    transform: translateY(30px); 
+    filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.3)); 
+}
+
+.video-countdown {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    transform: translateY(-5px);
+}
+
+.v-box { color: white; }
+.v-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    display: block;
+    font-weight: 600;
+}
+.v-lbl {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.start-btn {
+    background-color: rgba(255,255,255,0.25);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 10px 40px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transform: translateY(-5px);
+    position: relative;
+    z-index: 25;
+}
+
+.script-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+    color: #eae3db;
+}
+
+.host-text, .joyfully-invite {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #dfdcd8;
+    margin-bottom: 15px;
+}
+
+.parents-names {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.main-date {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+/* CHURCH CEREMONY CODES */
+.icon-church {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.time-stamp {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+.venue-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.venue-loc {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 35px;
+}
+
+.map-box {
+    background-color: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    padding: 20px;
+    color: #333;
+    max-width: 320px;
+    margin: 0 auto;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.map-pointer {
+    font-size: 1.8rem;
+    animation: bounce 2s infinite;
+}
+
+.map-tag {
+    font-weight: 600;
+    display: block;
+    margin: 8px 0 2px 0;
+    color: #8c765c;
+}
+
+.map-hint {
+    font-size: 0.75rem;
+    color: #777;
+}
+
+/* RSVP PANEL SPECIFICS */
+.rsvp-header {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.rsvp-deadline {
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.monogram-small {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    letter-spacing: 4px;
+    color: #eae3db;
+    margin-bottom: 15px;
+}
+
+.rsvp-form {
+    text-align: left;
+    max-width: 320px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 40;
+}
+
+.rsvp-form label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #dfdcd8;
+}
+
+.rsvp-form select, .rsvp-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dcd1c4;
+    background-color: white;
+    border-radius: 6px;
+    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    z-index: 45;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: #25D366; 
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(37,211,102,0.3);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+    60% { transform: translateY(-4px); }
+}
+
+/* ==========================================
+   RECEPTION CELEBRATION MATCHING DESIGN SYSTEM
+   ========================================== */
+.icon-reception {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.celebration-map {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(140, 118, 92, 0.3);
+}
+
+.celebration-map .map-tag {
+    color: #4a6b5d !important; 
+}
+
+.dynamic-pointer {
+    font-size: 1.8rem;
+    animation: simpleBounce 2s infinite;
+    display: inline-block;
+}
+
+@keyframes simpleBounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+    60% { transform: translateY(-4px); }
+}
+
+/* ==========================================
+   FLOATING BILINGUAL LANGUAGE SWITCHER SYSTEM
+   ========================================== */
+.lang-switcher {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lang-opt {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+    letter-spacing: 0.5px;
+}
+
+.lang-opt.active {
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+.lang-divider {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.rtl-mode {
+    direction: rtl;
+    text-align: right;
+}
+
+.rtl-mode .swipe-indicator {
+    right: auto;
+    left: 25px;
+    flex-direction: row-reverse;
+}
+
+.rtl-mode .arrow-icon {
+    transform: scaleX(-1);
+}
+
+/* ==========================================
+   ULTRA-MODERN NAV BUTTONS DESIGN SYSTEM
+   ========================================== */
+.last-slide-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 35px;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.nav-alt-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: none;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 12px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    max-width: 145px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.nav-alt-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.nav-alt-btn:active {
+    transform: translateY(0);
+}
+
+.exit-btn {
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.exit-btn:hover {
+    background: rgba(217, 83, 79, 0.12);
+    color: #ff7675;
+    box-shadow: inset 0 0 0 1px rgba(217, 83, 79, 0.2);
+}
